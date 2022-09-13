@@ -102,5 +102,5 @@ yarn-debug.log*
 yarn-error.log*
 
 
-# venv
-venv/
+# Pycache
+__pycache__/
