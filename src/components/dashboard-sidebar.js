@@ -124,7 +124,7 @@ export const DashboardSidebar = (props) => {
                   color="inherit"
                   variant="subtitle1"
                 >
-                  Henny Penny Analytics
+                  Henny Penny Data Analysis Tool
                 </Typography>
                 {/* <Typography
                   color="neutral.400"
