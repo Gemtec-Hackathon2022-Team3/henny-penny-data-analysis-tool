@@ -8,9 +8,9 @@ import {
   SvgIcon,
   Typography
 } from '@mui/material';
-import { Download as DownloadIcon } from '../../icons/download';
+// import { Download as DownloadIcon } from '../../icons/download';
 import { Search as SearchIcon } from '../../icons/search';
-import { Upload as UploadIcon } from '../../icons/upload';
+// import { Upload as UploadIcon } from '../../icons/upload';
 
 export const StoreListToolbar = (props) => (
   <Box {...props}>
@@ -68,7 +68,7 @@ export const StoreListToolbar = (props) => (
                   </InputAdornment>
                 )
               }}
-              placeholder="Search product"
+              placeholder="Search store"
               variant="outlined"
             />
           </Box>
