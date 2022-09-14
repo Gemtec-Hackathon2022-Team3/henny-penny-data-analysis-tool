@@ -107,3 +107,6 @@ __pycache__/
 
 # Dataset Pickle
 *.pkl
+
+#next
+.next
