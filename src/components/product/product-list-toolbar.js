@@ -29,7 +29,7 @@ export const ProductListToolbar = (props) => (
       >
         Products
       </Typography>
-      <Box sx={{ m: 1 }}>
+      {/* <Box sx={{ m: 1 }}>
         <Button
           startIcon={(<UploadIcon fontSize="small" />)}
           sx={{ mr: 1 }}
@@ -48,7 +48,7 @@ export const ProductListToolbar = (props) => (
         >
           Add products
         </Button>
-      </Box>
+      </Box> */}
     </Box>
     <Box sx={{ mt: 3 }}>
       <Card>
