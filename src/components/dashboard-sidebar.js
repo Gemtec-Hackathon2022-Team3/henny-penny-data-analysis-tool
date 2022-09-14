@@ -15,6 +15,7 @@ import { Users as UsersIcon } from '../icons/users';
 import { XCircle as XCircleIcon } from '../icons/x-circle';
 import { Logo } from './logo';
 import { NavItem } from './nav-item';
+import { Microwave } from '@mui/icons-material';
 
 const items = [
   {
@@ -29,7 +30,7 @@ const items = [
   // },
   {
     href: '/products',
-    icon: (<ShoppingBagIcon fontSize="small" />),
+    icon: (<Microwave fontSize="small" />),
     title: 'Products'
   }
   // {
