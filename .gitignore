@@ -104,3 +104,6 @@ yarn-error.log*
 
 # Pycache
 __pycache__/
+
+# Dataset Pickle
+*.pkl

@@ -3,13 +3,26 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [podData, setPodData] = useState({});
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
-    fetch('/api/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
+    console.log("Load Data Effect");
+    fetch('/api/load_data').then(res => {
+      if (!res.ok) throw new Error(res.status);
+      else setDataLoaded(true);
     });
   }, []);
+
+  useEffect(() => {
+    if (dataLoaded)
+    {
+      console.log("Load POD");
+      fetch('/api/pod').then(res => res.json()).then(data => {
+        setPodData(data);
+      });
+    }
+  }, [dataLoaded]);
 
   return (
     <div className="App">
@@ -27,7 +40,8 @@ function App() {
           Learn React
         </a>
 
-        <p>The current time is {currentTime}.</p>
+        <p>Excel Data Loaded? {String(dataLoaded)}</p>
+        <p>POD Data: {JSON.stringify(podData)}</p>
       </header>
     </div>
   );
