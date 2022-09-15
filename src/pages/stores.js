@@ -1,12 +1,40 @@
 import Head from 'next/head';
 import { Box, Container, Grid, Pagination } from '@mui/material';
-import { stores } from '../__mocks__/stores';
+// import { stores } from '../__mocks__/stores';
 import { StoreListToolbar } from '../components/store/store-list-toolbar';
 import { StoreCard } from '../components/store/store-card';
 import { DashboardLayout } from '../components/dashboard-layout';
+import { useState, useEffect } from 'react';
 
-const Stores = () => (
-  <>
+const Stores = () => { 
+  const [stores, setStores] = useState([]);
+  // db.select("*")
+  //   .from("location")
+  //   .then((location) => {
+  //     if (location.length) {
+  //       // res.json(location[0])
+  //       console.log("location: ", location);
+  //     } else {
+  //       res.status(400).json("Not found");
+  //     }
+  //   })
+  //   .catch((err) => res.status(400).json("error getting user"));
+
+  useEffect(() => {
+    fetch('/api/load_data')
+    .then(response => response.json())
+    .then(result => {
+      console.log('stores: ', result);
+    })
+    // .catch((error) => {
+    //   // reject(error);
+    //   console.log('error: ', error);
+    // });
+  }, []);
+  
+  return (
+
+<>
     <Head>
       <title>
         Stores
@@ -55,7 +83,7 @@ const Stores = () => (
       </Container>
     </Box>
   </>
-);
+)};
 
 Stores.getLayout = (page) => (
   <DashboardLayout>

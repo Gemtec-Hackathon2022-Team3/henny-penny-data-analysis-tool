@@ -107,3 +107,6 @@ venv/
 
 #next
 .next
+
+# db
+hp.db
