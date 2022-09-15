@@ -1,8 +1,5 @@
 import { Doughnut } from 'react-chartjs-2';
 import { Box, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
-import LaptopMacIcon from '@mui/icons-material/LaptopMac';
-import PhoneIcon from '@mui/icons-material/Phone';
-import TabletIcon from '@mui/icons-material/Tablet';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -14,6 +11,7 @@ export const TrafficByDevice = (props) => {
 
   const [dataLoaded, setDataLoaded] = useState(false);
   const [podData, setPodData] = useState({
+      timestamp: 0,
       modelnumber: "",
       serialnumber: "",
       dailycookcount: 0,
@@ -23,6 +21,7 @@ export const TrafficByDevice = (props) => {
       dailyeoctoosooncount: 0
     });
   const [goodCooks, setGoodCooks] = useState(0);
+  const [dtstring, setDateTimeData] = useState("");
 
   useEffect(() => {
     console.log("Loading Data");
@@ -48,15 +47,14 @@ export const TrafficByDevice = (props) => {
     setGoodCooks(podData.dailycookcount - badcooks);
   }, [podData]);
 
+  useEffect(() => {
+    console.log("Converting Timestamp");
+    let dt = new Date(podData.timestamp * 1000);
+    setDateTimeData(dt.toLocaleString());
+  }, [podData]);
+
   const data = {
     datasets: [
-      /*{
-        data: [63, 15, 22],
-        backgroundColor: ['#3F51B5', '#e53935', '#FB8C00'],
-        borderWidth: 8,
-        borderColor: '#FFFFFF',
-        hoverBorderColor: '#FFFFFF'
-      }*/
       {
       data: [goodCooks, podData.dailycooknotreadycount, podData.dailycookslowcount, podData.dailyeoctoolongcount, podData.dailyeoctoosooncount],
       backgroundColor: ['#3F51B5', "#E53935", '#FB8C00', '#34FF33', '#F4FF33'],
@@ -65,7 +63,6 @@ export const TrafficByDevice = (props) => {
       hoverBorderColor: '#FFFFFF'
       }
     ],
-    //labels: ['Desktop', 'Tablet', 'Mobile']
     labels: ['Good Cooks', "Cooks Not Ready", "Cook Slow", "EOC Too Long", "EOC Too Soon"]
   };
 
@@ -122,7 +119,7 @@ export const TrafficByDevice = (props) => {
   return (
     <Card {...props}>
       <CardHeader title="Cooking Statistics"
-        subheader={`Model Number: ${podData.modelnumber}, Serial Number: ${podData.serialnumber}`}
+        subheader={`Model Number: ${podData.modelnumber}, Serial Number: ${podData.serialnumber}, Timestamp: ${dtstring}`}
       />
       <Divider />
       <CardContent>

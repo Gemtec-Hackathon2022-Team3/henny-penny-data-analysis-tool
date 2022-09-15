@@ -27,6 +27,6 @@ def get_pod():
 
 @app.route("/api/filterTimes")
 def get_filterTimes():
-    with open ('../filterData.json') as f:
+    with open ('filterData.json') as f:
         result_json = json.loads(f.read())
     return result_json
