@@ -74,7 +74,7 @@ const Dashboard = () => (
           >
             <Sales />
           </Grid>
-          {/* <Grid
+          <Grid
             item
             lg={4}
             md={6}
@@ -83,6 +83,7 @@ const Dashboard = () => (
           >
             <TrafficByDevice sx={{ height: '100%' }} />
           </Grid>
+ {/*
           <Grid
             item
             lg={4}

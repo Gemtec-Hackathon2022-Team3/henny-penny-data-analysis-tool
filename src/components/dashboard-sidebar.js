@@ -27,11 +27,11 @@ const items = [
   //   icon: (<UsersIcon fontSize="small" />),
   //   title: 'Customers'
   // },
-  {
-    href: '/products',
-    icon: (<ShoppingBagIcon fontSize="small" />),
-    title: 'Products'
-  }
+  //{
+  //  href: '/products',
+  //  icon: (<ShoppingBagIcon fontSize="small" />),
+  //  title: 'Products'
+  //}
   // {
   //   href: '/account',
   //   icon: (<UserIcon fontSize="small" />),
