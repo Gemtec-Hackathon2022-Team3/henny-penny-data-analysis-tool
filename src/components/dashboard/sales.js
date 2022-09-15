@@ -1,35 +1,168 @@
 import { Bar } from 'react-chartjs-2';
-import { Box, Button, Card, CardContent, CardHeader, Divider, useTheme } from '@mui/material';
+import { Box, Button, Card, CardContent, CardHeader, Divider, Typography, useTheme } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 export const Sales = (props) => {
   const theme = useTheme();
+  
+  const { id } = useRouter().query;
+
+  const [dataLoaded, setDataLoaded] = useState(false);  
+  
+  const [filterTimesData, setFilterTimeData] = useState({
+    modelNumber: [],
+    serialNumStrings: [],
+    filterTimeAverages: [],
+    mostRecentData: [[]],
+    filterTypes: []
+  });
+
+  useEffect(() => {
+    console.log("Loading Data");
+    fetch("/api/load_data").then(res => {
+      if (!res.ok) throw new Error(res.status);
+      else setDataLoaded(true);
+    });
+  }, [id]);
+
+  useEffect(() => {
+    if (dataLoaded)
+    {
+      fetch("/api/filterTimes").then(res => res.json()).then(data => {
+        console.log(data);
+        setFilterTimeData(data);
+      });
+    }
+  }, [dataLoaded]);
 
   const data = {
     datasets: [
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[0],
+        label: filterTimesData.serialNumStrings[0],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[1],
+        label: filterTimesData.serialNumStrings[1],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[2],
+        label: filterTimesData.serialNumStrings[2],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[3],
+        label: filterTimesData.serialNumStrings[3],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[4],
+        label: filterTimesData.serialNumStrings[4],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[5],
+        label: filterTimesData.serialNumStrings[5],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[6],
+        label: filterTimesData.serialNumStrings[6],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[7],
+        label: filterTimesData.serialNumStrings[7],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[8],
+        label: filterTimesData.serialNumStrings[8],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[9],
+        label: filterTimesData.serialNumStrings[9],
+        maxBarThickness: 10
+      },
+      {
+        backgroundColor: '#000000',
+        barPercentage: 0.5,
+        barThickness: 12,
+        borderRadius: 4,
+        categoryPercentage: 0.5,
+        data: filterTimesData.mostRecentData[10],
+        label: filterTimesData.serialNumStrings[10],
+        maxBarThickness: 10
+      },
       {
         backgroundColor: '#3F51B5',
         barPercentage: 0.5,
         barThickness: 12,
         borderRadius: 4,
         categoryPercentage: 0.5,
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'This year',
-        maxBarThickness: 10
-      },
-      {
-        backgroundColor: '#EEEEEE',
-        barPercentage: 0.5,
-        barThickness: 12,
-        borderRadius: 4,
-        categoryPercentage: 0.5,
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Last year',
+        data: filterTimesData.mostRecentData[11],
+        label: filterTimesData.serialNumStrings[11],
         maxBarThickness: 10
       }
     ],
-    labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug', '7 aug']
+    labels: ['1', '2', '3', '4', '5', '6', '7']
   };
 
   const options = {
@@ -81,6 +214,17 @@ export const Sales = (props) => {
     }
   };
 
+  const graphLegend = [
+    {
+      title: 'PFE500 - Manual Filter',
+      color: '#000000'
+    },
+    {
+      title: 'CFE415 - Express Filter',
+      color: '#3F51B5'
+    },
+  ]
+
   return (
     <Card {...props}>
       <CardHeader
@@ -89,10 +233,10 @@ export const Sales = (props) => {
             endIcon={<ArrowDropDownIcon fontSize="small" />}
             size="small"
           >
-            Last 7 days
+            Last 7 instances
           </Button>
         )}
-        title="Latest Sales"
+        title="Filter Times"
       />
       <Divider />
       <CardContent>
@@ -106,6 +250,39 @@ export const Sales = (props) => {
             data={data}
             options={options}
           />
+        </Box>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            pt: 2
+          }}
+        >
+          {graphLegend.map(({
+            color,
+            title
+          }) => (
+            <Box
+              key={title}
+              sx={{
+                p: 1,
+                textAlign: 'center'
+              }}
+            >
+              <Typography
+                color="textPrimary"
+                variant="body1"
+              >
+                {title}
+              </Typography>
+              <Typography
+                style={{ color }}
+                variant="h4"
+              >
+                ____
+              </Typography>
+            </Box>
+          ))}
         </Box>
       </CardContent>
       <Divider />
