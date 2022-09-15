@@ -1,31 +1,31 @@
 {
-    "filterTimeAverages": [
-        184.28571428571428,
-        223.0,
-        229.42857142857142,
-        194.57142857142858,
-        345.7142857142857,
-        335.7142857142857,
-        331.85714285714283,
-        378.2857142857143,
-        271.14285714285717,
-        280.7142857142857,
-        405.85714285714283,
-        257.14285714285717
+    "serialNumStrings": [
+        "AA1709219",
+        "AA1709222",
+        "AA1709233",
+        "AA1806130",
+        "AA2006123",
+        "AA2007106",
+        "AA2008027",
+        "AA2008031",
+        "AA2008046",
+        "AA2008047",
+        "AA2111181",
+        "LF1710020"
     ],
-    "filterTypes": [
-        "Manual Filter",
-        "Manual Filter",
-        "Manual Filter",
-        "Manual Filter",
-        "Manual Filter",
-        "Manual Filter",
-        "Manual Filter",
-        "Manual Filter",
-        "Manual Filter",
-        "Manual Filter",
-        "Manual Filter",
-        "Express Filter"
+    "modelNumber": [
+        "PFE500",
+        "PFE500",
+        "PFE500",
+        "PFE500",
+        "PFE500",
+        "PFE500",
+        "PFE500",
+        "PFE500",
+        "PFE500",
+        "PFE500",
+        "PFE500",
+        "CFE415"
     ],
     "mostRecentData": [
         [
@@ -137,18 +137,32 @@
             386
         ]
     ],
-    "serialNumStrings": [
-        "AA1709219",
-        "AA1709222",
-        "AA1709233",
-        "AA1806130",
-        "AA2006123",
-        "AA2007106",
-        "AA2008027",
-        "AA2008031",
-        "AA2008046",
-        "AA2008047",
-        "AA2111181",
-        "LF1710020"
+    "filterTypes": [
+        "Manual Filter",
+        "Manual Filter",
+        "Manual Filter",
+        "Manual Filter",
+        "Manual Filter",
+        "Manual Filter",
+        "Manual Filter",
+        "Manual Filter",
+        "Manual Filter",
+        "Manual Filter",
+        "Manual Filter",
+        "Express Filter"
+    ],
+    "filterTimeAverages": [
+        184.28571428571428,
+        223.0,
+        229.42857142857142,
+        194.57142857142858,
+        345.7142857142857,
+        335.7142857142857,
+        331.85714285714283,
+        378.2857142857143,
+        271.14285714285717,
+        280.7142857142857,
+        405.85714285714283,
+        257.14285714285717
     ]
 }

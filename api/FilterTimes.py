@@ -60,6 +60,7 @@ serialNumStrings = ['' for x in range(numOfUniqueSerialNumbers)]
 mostRecentData = [[0 for x in range(numDataPoints)] for x in range(numOfUniqueSerialNumbers)]
 filterTimeAverages = [0 for x in range(numOfUniqueSerialNumbers)]
 filterTypes = ['' for x in range(numOfUniqueSerialNumbers)]
+modelNumber = ['' for x in range(numOfUniqueSerialNumbers)]
 
 currentLoc = 0
 serialNumPosition = 0
@@ -73,6 +74,7 @@ for currentLoc in range(numOfRows):
         # Obtain the seven most recent filter times for the current serial number.
         prevLoc = currentLoc - numDataPoints
         filterTypes[serialNumPosition] = data[headerStrings[HEADER.CLEANTYPE.value]].iloc[prevLoc]
+        modelNumber[serialNumPosition] = data[headerStrings[HEADER.MODELNUMBER.value]].iloc[prevLoc]
         
         for x in range(numDataPoints):
             mostRecentData[serialNumPosition][x] = data[headerStrings[HEADER.TOTALCLEANTIMER.value]].iloc[prevLoc]
@@ -87,6 +89,7 @@ for currentLoc in range(numOfRows):
 # in the previous loop.
 prevLoc = currentLoc + 1 - numDataPoints 
 filterTypes[serialNumPosition] = data[headerStrings[HEADER.CLEANTYPE.value]].iloc[prevLoc]
+modelNumber[serialNumPosition] = data[headerStrings[HEADER.MODELNUMBER.value]].iloc[prevLoc]
 for x in range(numDataPoints):
     mostRecentData[serialNumPosition][x] = data[headerStrings[HEADER.TOTALCLEANTIMER.value]].iloc[prevLoc]
     prevLoc += 1
@@ -96,10 +99,11 @@ filterTimeAverages[serialNumPosition] = sum(mostRecentData[serialNumPosition]) /
 # Convert necessary data to JSON
 # Writing to sample.json
 jsonObject = {
-    'filterTimeAverages' : filterTimeAverages,
-    'filterTypes' : filterTypes,
+    'serialNumStrings' : serialNumStrings,
+    'modelNumber' : modelNumber,
     'mostRecentData' : mostRecentData,
-    'serialNumStrings' : serialNumStrings
+    'filterTypes' : filterTypes,
+    'filterTimeAverages' : filterTimeAverages,
 }
 with open("filterData.json", "w") as outfile:
-    outfile.write(json.dumps(jsonObject, sort_keys=True, indent=4))
+    outfile.write(json.dumps(jsonObject, sort_keys=False, indent=4))
